@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index",
     "watch": "nodemon index",
-    "test": "jest --verbose --watchAll"
+    "test": "jest --verbose --watchAll --coverage"
   },
   "keywords": [],
   "author": "",
