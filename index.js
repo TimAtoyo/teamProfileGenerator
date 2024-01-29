@@ -8,6 +8,10 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
+const render = require("./src/page-template.js");
+
+const team = []
+
 const internQuestions = [
   {
     type: "input",
@@ -126,6 +130,7 @@ const initQuestions = function () {
       var manOfficeNo = answers.managerOfficeNo;
       var manager = new Manager(manName, manId, manEmail, manOfficeNo);
       console.log(`Manger object create: ${manager}`);
+      team.push(manager)
       createTeamMember();
     })
     .catch((error) => {
@@ -154,6 +159,7 @@ const createIntern = function () {
         internsSchool
       );
       console.log(intern);
+      team.push(intern)
       createTeamMember();
     })
     .catch((error) => {
@@ -182,6 +188,8 @@ const createEngineer = function () {
         GitHubUsername
       );
       console.log(engineer);
+      team.push(engineer)
+
       createTeamMember();
     })
     .catch((error) => {
@@ -206,8 +214,10 @@ const createTeamMember = function () {
         createIntern();
       } else if (answers.managerTeamChoice === "Finish building the team") {
         console.log("Lets build your team");
+        render(team);
         process.exit(0);
       }
+
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -219,4 +229,6 @@ const createTeamMember = function () {
       }
     });
 };
+
+// Init Manger Questions
 initQuestions();
