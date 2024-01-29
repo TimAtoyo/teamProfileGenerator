@@ -3,11 +3,12 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
-const {writeFile, appendFile} = require("fs");
+const fs = require("fs");
+const { Buffer } = require("buffer");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
+console.log(outputPath);
 const render = require("./src/page-template.js");
 
 const team = [];
@@ -129,7 +130,7 @@ const initQuestions = function () {
       var manEmail = answers.managerEmail;
       var manOfficeNo = answers.managerOfficeNo;
       var manager = new Manager(manName, manId, manEmail, manOfficeNo);
-      console.log(`Manger object create: ${manager}`);
+      console.log( manager);
       team.push(manager);
       createTeamMember();
     })
@@ -150,12 +151,12 @@ const createIntern = function () {
     .then((answers) => {
       var internsName = answers.internsName;
       var internsId = answers.internsId;
-      var nternsEmail = answers.nternsEmail;
+      var internsEmail = answers.internsEmail;
       var internsSchool = answers.internsSchool;
       var intern = new Intern(
         internsName,
         internsId,
-        nternsEmail,
+        internsEmail,
         internsSchool
       );
       console.log(intern);
@@ -214,15 +215,14 @@ const createTeamMember = function () {
         createIntern();
       } else if (answers.managerTeamChoice === "Finish building the team") {
         console.log("Lets build your team");
-        output = render(team);
-        writeFile(outputPath, output, (err) =>
-        // TODO: Describe how this ternary operator works
-        err ? console.error(err) : console.log("Commit logged!", output)
-      );
-        process.exit(0);
-       
+        let output = render(team);
+        //    JSON.stringify(output)
+        const data = new Uint8Array(Buffer.from(output));
+        fs.writeFile(outputPath, data, "UTF-8", (err) =>
+          err ? console.error(err) : console.log("Commit logged")
+        );
+        // process.exit(0);
       }
-  
     })
     .catch((error) => {
       if (error.isTtyError) {
@@ -234,11 +234,6 @@ const createTeamMember = function () {
       }
     });
 };
-
-function writeToFile(fileName, data) {
-
-  
-  }
 
 // Init Manger Questions
 initQuestions();
