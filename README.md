@@ -4,8 +4,10 @@
   ## Description
       
   The motivation for this project was to be able to create a webpage quickly and efficiently!
-  This project was built to help me understand how classes can be used in a real worlr scenario, it also anables a Manager to add his or her employees details and quickly have a website built with their details.
+  This project was built to help me understand how classes can be used in a real worlr scenario, it also anables a Manager to add his or her employees details and quickly have a website built with their details and have quick access to their emails and GitHub profiles.
+
   This project solves the problem if building a website and for a Manager who has any number of employees under him!
+  
   I learnt how to use synchronus file writing and js classes. I was able to also exted my knowlage of the inquirer node module package.
       
   ## Table of Contents
