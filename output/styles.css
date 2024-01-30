@@ -1,5 +1,5 @@
 .team-heading {
-    background-color:blue;
+    background-color:#B83B5E;
     color:white;
 }
 
@@ -9,9 +9,23 @@
 
 .card-header{
     background-color: #F08A5D;
-    color:#fff;
+    color:#000000;
+    min-height:10rem;
+    border-top-right-radius: 1.8rem!important;
+    border-top-left-radius: 1.8rem!important;
+}
+
+.card:hover {
+    transform: scale(1.2, 1.2);
+    z-index:1;
+    border: 3px solid #6A2C30;
 }
 
 .card {
-    width:100%
+    width:100%;
+    font-size:1.3rem;
+    border-radius: 2rem;
+    transform: scale(1, 1);
+  transition:  all 0.5s ease;
 }
+
