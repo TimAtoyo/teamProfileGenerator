@@ -1,0 +1,17 @@
+.team-heading {
+    background-color:blue;
+    color:white;
+}
+
+.container-fluid {
+    margin-bottom:4rem;
+}
+
+.card-header{
+    background-color: #F08A5D;
+    color:#fff;
+}
+
+.card {
+    width:100%
+}
