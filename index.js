@@ -3,7 +3,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
-const fs = require("fs");
+const {writeFileSync} = require("fs");
 const { Buffer } = require("buffer");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
@@ -218,10 +218,10 @@ const createTeamMember = function () {
         let output = render(team);
         //    JSON.stringify(output)
         const data = new Uint8Array(Buffer.from(output));
-        fs.writeFile(outputPath, data, "UTF-8", (err) =>
+        writeFileSync(outputPath, data, "UTF-8", (err) =>
           err ? console.error(err) : console.log("Commit logged")
         );
-        // process.exit(0);
+         process.exit(0);
       }
     })
     .catch((error) => {
